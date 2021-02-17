@@ -14,3 +14,10 @@ app.use((req, res, next) => {
     
     next()
 })
+
+//Connect to mongodb
+const MongoClient = require('mongodb').MongoClient
+let db
+MongoClient.connect('mongodb+srv://Abdulrahman:Abdulrahman123@cluster0.40ign.mongodb.net/test', (err, client)=>{
+    db = client.db('webstore')
+})
