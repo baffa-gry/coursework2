@@ -1,6 +1,7 @@
 //import modules
 const exp = require('express')
 const { ObjectID } = require('mongodb')
+var path = require('path')
 
 //create an express js instance
 const app = exp()
@@ -20,6 +21,12 @@ const MongoClient = require('mongodb').MongoClient
 let db
 MongoClient.connect('mongodb+srv://Abdulrahman:Abdulrahman123@cluster0.40ign.mongodb.net/test', (err, client)=>{
     db = client.db('webstore')
+})
+
+//handle images
+app.get('/collection/lessons/images', (re, res, next) => {
+    var imagePath = path.resolve(__dirname, "images");
+    app.use("/images", exp.static(imagePath))
 })
 
 //display a message or root path to show that API is working
